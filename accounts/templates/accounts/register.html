@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% if error %}
+
+  <div class="alert alert-warning" role="alert">
+        <strong>Warning!</strong>{{error}}
+    </div>
+
+{% endif %}
+
+<div class="col-md-6 mx-auto">
+	<form action="{% url 'accounts:register' %}" method="POST" class="form-signin">
+		{% csrf_token %}
+		  <div class="text-center mb-4">
+		    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+		    <p>Fell Free To Register</p>
+		  </div>
+
+		  <div class="form-label-group">
+		    <input type="text" name="username"  class="form-control" placeholder="User Name" required>
+
+		  </div>
+		  <br>
+		  <div class="form-label-group">
+		    <input type="password" name="password1"  class="form-control" placeholder="Password" required>
+
+		  </div>
+		  <br>
+		  <div class="form-label-group">
+		    <input type="password" name="password2"  class="form-control" placeholder="Confirm Password" required>
+
+		  </div>
+		  <br>
+
+		  <input type="submit" value="Register" class="btn btn-secondary btn-block">
+	</form>
+</div>
+
+
+
+{% endblock content %}

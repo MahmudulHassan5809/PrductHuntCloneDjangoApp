@@ -1,0 +1,55 @@
+{% load staticfiles %}
+<nav class="navbar  navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url "home" %}">Product Hunt
+  <img src="{% static 'logo.png' %}" height="30" width="30" class="d-inline-block align-top" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+ <div class="ml-auto">
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+     <ul class="navbar-nav">
+
+      {% if user.is_authenticated %}
+       <li class="nav-item">
+          <a class="nav-link" href="{% url "home" %}">Home</a>
+        </li>
+
+      <li class="nav-item">
+          <a class="nav-link" href="{% url "products:create" %}">Add Product</a>
+        </li>
+
+
+       <li>
+        <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">
+              <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+               <form  method="post" id="logout" action="{% url "accounts:logout" %}">
+                  {% csrf_token %}
+                  <input type="hidden">
+              </form>
+      </li>
+
+
+      {% else %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "home" %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "accounts:register" %}">Sing Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "accounts:login" %}">Login</a>
+        </li>
+
+      {% endif %}
+    </ul>
+  </div>
+ </div>
+</nav>
+
+
+
+

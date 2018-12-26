@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+{% if error %}
+
+  <div class="alert alert-warning" role="alert">
+        <strong>Warning!</strong>{{error}}
+    </div>
+
+{% endif %}
+
+<div class="col-md-8 mx-auto">
+	<form action="{% url 'products:create' %}" method="POST" enctype="multipart/form-data" class="form-signin">
+		{% csrf_token %}
+		  <div class="text-center mb-4">
+		    <h1 class="h3 mb-3 font-weight-normal">Create Your Own Product</h1>
+
+		  </div>
+
+		  <div class="form-label-group">
+		    <input type="text" name="title"  class="form-control" placeholder="Product Title" required>
+
+		  </div>
+		  <br>
+
+		  <div class="form-label-group">
+		    <textarea name="body" placeholder="Product Description" class="form-control" cols="30" rows="10">
+
+		    </textarea>
+
+		  </div>
+		  <br>
+
+		  <div class="form-label-group">
+		    <input type="text" name="url"  class="form-control" placeholder="Product Url" required>
+
+		  </div>
+		  <br>
+
+          <div class="form-label-group">
+          	<label>Product Icon</label><br>
+		    <input type="file" name="icon" required>
+
+		  </div>
+		  <br>
+
+		  <div class="form-label-group">
+		  	<label>Product Image</label><br>
+		    <input type="file" name="image" required>
+
+		  </div>
+		  <br>
+
+
+		  <input type="submit" value="Create" class="btn btn-secondary btn-block">
+	</form>
+</div>
+
+
+
+{% endblock content %}
